@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate, useSearchParams } from "react-router-dom";
 import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import Homepage from './pages/Homepage';
-import Confirm from './pages/Confirm';
-import PasswordResetForm from './pages/PasswordResetForm';
-import CreateNewPassword from './pages/CreateNewPassword';
-import Profile from './pages/Profile';
-import Account from './pages/Account';
-import Password from './pages/Password';
 import Dashboard from './pages/Dashboard';
 
 import Message from './components/Message';
@@ -45,8 +38,8 @@ const http = require('axios');
 
 const theme = createTheme({
   palette: {
-    primary: teal,
-    secondary: orange
+    primary: deepPurple,
+    secondary: purple
   },
 });
 
@@ -89,54 +82,6 @@ function App() {
     navigate("/");
   }
 
-  function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://metaflora.hu/">
-          MetaFlóra
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
-  function StickyFooter() {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          width: '100%',
-          position: 'sticky',
-          bottom: '0',
-          margin: '0 auto',
-          zIndex: '-1'
-        }}
-      >
-        <CssBaseline />
-        <Box
-          component="footer"
-          sx={{
-            py: 3,
-            px: 2,
-            mt: 'auto',
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[200]
-                : theme.palette.grey[800],
-          }}
-        >
-          <Container maxWidth="sm">
-            <Copyright />
-          </Container>
-        </Box>
-      </Box>
-    );
-  }
-
   return (
     <>
     <ThemeProvider theme={theme}>
@@ -167,59 +112,12 @@ function App() {
           }
         />
         <Route
-          path="passwordResetForm"
-          element={
-            <PasswordResetForm
-              setStatus={setStatus}
-            />
-          }
-        />
-        <Route
-          path="reset"
-          element={
-            <CreateNewPassword
-              setStatus={setStatus}
-            />
-          }
-        />
-        <Route
-          path="signUp"
-          element={
-            <SignUp setStatus={setStatus} />
-          }
-        />
-        <Route
-          path="confirm"
-          element={
-            <Confirm setStatus={setStatus} />
-          }
-        />
-        <Route
-          path="profile"
-          element={
-            <Profile setStatus={setStatus} />
-          }
-        />
-        <Route
-          path="account"
-          element={
-            <Account setStatus={setStatus} />
-          }
-        />
-        <Route
-          path="password"
-          element={
-            <Password setStatus={setStatus} />
-          }
-        />
-        <Route
           path="dashboard"
           element={
             <Dashboard setStatus={setStatus} />
           }
         />
       </Routes>
-      <StickyFooter />
     </ThemeProvider>
     </>
   );

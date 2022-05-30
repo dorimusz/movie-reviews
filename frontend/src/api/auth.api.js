@@ -17,7 +17,5 @@ const apiSignInWithGoogle = async (code) => {
 }
 
 module.exports = { 
-
-  apiSignInWithGoogle
-
+  apiSignInWithGoogle,
 }

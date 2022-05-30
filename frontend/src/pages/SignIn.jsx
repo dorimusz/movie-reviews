@@ -117,68 +117,6 @@ export default function SignIn({setStatus, loggedIn, setLoggedIn}) {
           Sign in
         </Typography>
         <Box component="form" onSubmit={signIn} noValidate sx={{ mt: 1 }}>
-          <TextField
-            value={credential} onChange={handleChange} 
-            margin="normal"
-            required
-            fullWidth
-            id="credential"
-            label="Username or Email Address"
-            name="credential"
-            autoComplete="credential"
-            autoFocus
-            variant="standard"
-          />
-          <TextField
-            value={password} onChange={handleChange}  
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            variant="standard"
-          />
-          <div className="errorMessage">
-            {errors.credential && <span>{errors.credential}</span>}
-            {errors.password && <span>{errors.password}</span>}
-          </div>
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            disabled={!sendStatus}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="passwordResetForm" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="signUp" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-          <Box
-          sx={{
-            marginTop: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-          >
-            <Typography component="h1" variant="h5">
-              OR
-            </Typography>
-          </Box>
           <Button
             onClick={() => window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=423125049963-vnhlm59vvirdjsquu0efhqvq5u91orks.apps.googleusercontent.com&scope=openid%20email%20profile&redirect_uri=http%3A//localhost:3000/callback"}
             fullWidth
@@ -189,7 +127,6 @@ export default function SignIn({setStatus, loggedIn, setLoggedIn}) {
           </Button>
         </Box>
       </Box>
-      {/* </Paper> */}
     </Container>
   );
 }

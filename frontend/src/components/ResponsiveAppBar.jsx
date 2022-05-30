@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import FilterVintageTwoToneIcon from '@mui/icons-material/FilterVintageTwoTone';
+import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 import { Link } from "react-router-dom";
 
 const ResponsiveAppBar = ({ signOut, loggedIn }) => {
@@ -39,7 +40,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/">
-            <FilterVintageTwoToneIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <MovieFilterIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           </Link>
           <Typography
             variant="h6"
@@ -55,7 +56,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
             }}
           >
             <Link to="/">
-              LOGO
+              MOVIE-REVIEWS
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -104,19 +105,12 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                       </Link>
                     </Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link to="signUp">
-                          Sign Up
-                      </Link>
-                    </Typography>
-                  </MenuItem>
                 </div>
               }
             </Menu>
           </Box>
           <Link to="/">
-            <FilterVintageTwoToneIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <MovieFilterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           </Link>
           <Typography
               variant="h5"
@@ -134,7 +128,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               }}
             >
               <Link to="/">
-                LOGO
+              MOVIE-REVIEWS
               </Link>
           </Typography>
 
@@ -157,13 +151,6 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                   <Typography textAlign="center">
                     <Link to="signIn">
                       Sign In
-                    </Link>
-                  </Typography>
-                </Button>
-                <Button onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link to="signUp">
-                      Sign Up
                     </Link>
                   </Typography>
                 </Button>
@@ -194,29 +181,6 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link to="account">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    Account
-                  </Typography>
-                </MenuItem>
-              </Link>
-              <Link to="profile">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    Profile
-                  </Typography>
-                </MenuItem>
-              </Link>
-              { loggedIn !== "Google" &&
-                <Link to="password">
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">
-                      Password
-                    </Typography>
-                  </MenuItem>
-                </Link>
-              }
               <Link to="dashboard">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
