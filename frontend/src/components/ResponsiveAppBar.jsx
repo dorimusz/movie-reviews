@@ -88,15 +88,37 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              { loggedIn ? 
-                <div>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" onClick={signOut}>
-                       Sign Out
+              { loggedIn ?
+                <>
+                  <div>
+                  <Button onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link to="/">
+                        Dashboard
+                      </Link>
                     </Typography>
-                  </MenuItem>
+                  </Button>
                 </div>
-                : 
+                <div>
+                  <Button onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link to="/">
+                        Browse movies
+                      </Link>
+                    </Typography>
+                  </Button>
+                </div>
+                <div>
+                  <Button onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link to="/">
+                        Valami
+                      </Link>
+                    </Typography>
+                  </Button>
+                </div>
+                </>
+              : 
                 <div>
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
@@ -133,12 +155,30 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
           </Typography>
 
           { loggedIn ? 
-            <Box sx={{ flexGrow: 1, justifyContent: 'center', display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, justifyContent: 'flex-start', display: { xs: 'none', md: 'flex' } }}>
               <div>
                 <Button onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/">
-                      Content
+                      Dashboard
+                    </Link>
+                  </Typography>
+                </Button>
+              </div>
+              <div>
+                <Button onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to="/">
+                      Browse movies
+                    </Link>
+                  </Typography>
+                </Button>
+              </div>
+              <div>
+                <Button onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to="/">
+                      Valami
                     </Link>
                   </Typography>
                 </Button>
@@ -181,13 +221,6 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link to="dashboard">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    Dashboard
-                  </Typography>
-                </MenuItem>
-              </Link>
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center" onClick={signOut}>
                   Sign out
