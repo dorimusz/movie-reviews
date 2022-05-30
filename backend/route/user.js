@@ -1,8 +1,6 @@
 const router = require('express').Router();
-const User = require('../models/user');
+const UserCtrl = require("../controller/user");
 
-router.post('/login', async (req, res) => {
-    //code
-});
+router.post("/signInWithGoogle", UserCtrl.apiSignInWithGoogle);
 
 module.exports = router;
