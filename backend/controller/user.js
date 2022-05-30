@@ -16,13 +16,11 @@ const apiSignInWithGoogle = async (req, res, next) => {
         "grant_type": "authorization_code"
       })
       const decoded = jwt.decode(response.data.id_token)
-      // console.log(decoded);
 
       let option = { "entity.provider": "Google", "entity.id": decoded.sub };
       const user = await UserService.getUserByCredential(option);
       if (user.length > 0) {
          const token = generateToken(user[0]._id);
-         console.log("token: ", token);
          res.json({
             token: token
          });
@@ -38,7 +36,7 @@ const apiSignInWithGoogle = async (req, res, next) => {
                token: token
             });
          } else {
-            console.log("miafvan");
+            console.log("error");
          }
       }
 
