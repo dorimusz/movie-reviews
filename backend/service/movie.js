@@ -22,14 +22,15 @@ const getMoviesByUser = async (userId) => {
 
 const saveReview = async (reviewData) => {
   console.log(reviewData)
-  const { title, description, score } = reviewData;
+  const { title, description, score, user_id, movie_id } = reviewData;
   try {
-    const review = await Movie.findOneAndUpdate({movie_id: reviewData.movie_id}, {
+    const review = await Movie.findOneAndUpdate({movie_id: movie_id}, {
       $push: {
         reviews: {
           title: title,
           description: description,
           score: score,
+          user_id: user_id
         },
       },
     });
