@@ -2,7 +2,7 @@ const MovieService = require("../service/movie");
 const http = require('axios')
 
 const apiGetAllReviewedMovies = async (req, res) => {
-   const movies = await MovieService.getMoviesByUser(req.body.user_id)
+   const movies = await MovieService.getMoviesByUser(req.user_id)
    if (movies) {
       res.json(movies);
    } else {
@@ -19,7 +19,19 @@ const apiSaveMovie = async (req, res) => {
    }   
 }
 
+const apiSaveReview = async (req, res) => {
+   if (!req.params.id) return res.sendStatus(400)
+   req.body.movie_id = req.params.id
+   const review = await MovieService.saveReview(req.body)
+   if (review) {
+      res.sendStatus(201);
+   } else {
+      res.sendStatus(400);
+   }   
+}
+
 module.exports = { 
    apiGetAllReviewedMovies,
-   apiSaveMovie
+   apiSaveMovie,
+   apiSaveReview
 }

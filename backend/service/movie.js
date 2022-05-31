@@ -1,8 +1,8 @@
 const Movie = require("../model/movie");
 
-const saveMovie = async (moviedata) => {
+const saveMovie = async (movieData) => {
   try {
-    const movie = new Movie(moviedata);
+    const movie = new Movie(movieData);
     const newMovie = await movie.save();  
     return newMovie;
   } catch (error) {
@@ -20,7 +20,27 @@ const getMoviesByUser = async (userId) => {
   }
 }
 
+const saveReview = async (reviewData) => {
+  console.log(reviewData)
+  const { title, description, score } = reviewData;
+  try {
+    const review = await Movie.findOneAndUpdate({movie_id: reviewData.movie_id}, {
+      $push: {
+        reviews: {
+          title: title,
+          description: description,
+          score: score,
+        },
+      },
+    });
+    return review;
+  } catch (error) {
+    console.log(`Could not save review ${error}`);
+  }
+};
+
 module.exports = { 
   saveMovie,
-  getMoviesByUser
+  getMoviesByUser,
+  saveReview
 }
