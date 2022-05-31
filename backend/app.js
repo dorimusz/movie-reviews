@@ -11,8 +11,8 @@ app.use(express.json())
 app.use(logger);
 
 const userRoutes = require('./route/user')
-const dashboardRoutes = require('./route/dashboard')
-app.use('/api/dashboards', dashboardRoutes)
+const movieRoutes = require('./route/movie')
+app.use('/api/movies', movieRoutes)
 app.use('/api/user', userRoutes)
 
 app.use(errorHandler);

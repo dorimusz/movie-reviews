@@ -13,23 +13,24 @@ const reviewSchema = Schema({
     type: Number
   },
   user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    type: String,
+    required: true
   },
   timestamps: {}
 });
 
 const movieSchema = Schema({
+  movie_id: {
+    type: String,
+    required: true,
+    unique: true
+  },
   title: {
     type: String,
     required: true
   },
   description: {
     type: String
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
   },
   reviews: {
     type: [reviewSchema]
