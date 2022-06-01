@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { apiGetContent } from '../api/auth.api'
-import BrowseByMovie from './BrowseByMovie'
+import React, { useState, useEffect } from 'react';
+import http from 'axios'
+// import { apiGetContent } from '../api/auth.api'
+// import BrowseByMovie from './BrowseByMovie'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button'
+import MyReviews from '../components/MyReviews';
+// import { margin } from '@mui/system';
+// import { containerClasses } from '@mui/material';
 
 const Homepage = ({ loggedIn, setStatus }) => {
-  const [content, setContent] = useState(false);
+  // const [content, setContent] = useState(false);
 
   // const getContent = async (endpoint) => {
   //   const response = await apiGetContent(endpoint);
@@ -25,35 +30,106 @@ const Homepage = ({ loggedIn, setStatus }) => {
   //   }
   // };
 
+
+  const [myReviews, setMyReviews] = useState(['fgfgfgf','gfgfg','gfgfg'])
+  const userId = ''                         /////////// need userId!!!!!!! ////////
+  
+  const getReviews = async () => {
+    const response = await http.get(`https://localhost:4000/movies/${userId}/reviews`);
+    console.log(response.data);
+    setMyReviews(response.data)
+  }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
+    <Container component="main" maxWidth="lg">
+      <Box>
         {loggedIn ?
           <>
-            <h2>Welcome</h2>
-
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '60px'
+              }}
+            >
+              <h2>Welcome USERNAME</h2>
+            </Box>
             {/* <BrowseByMovie /> */}
-
           </>
           :
           <>
             <h2>You are not logged in.</h2>
           </>
         }
+        {loggedIn &&
+          <Container>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                width: '100%',
+                bgcolor: 'lightGray'
+              }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  <h3>You're in good company</h3>
+                  <p
+                    sx={{
+                      margin: '10px'
+                    }}
+                  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam magnam architecto. Odio, ipsam. Autem odio tenetur delectus fugiat quas beatae recusandae iure atque placeat, voluptatem minima, facilis tempora dolores.</p>
+                </Box>
+                <Box>
+                  <Button variant="contained"
+                    sx={{
+                      width: '200px',
+                      padding: '30px',
+                      margin: '20px 20px 40px'
+                    }}
+                  >
+                    Browse movies
+                  </Button>
+                </Box>
+              </Box>
+            <Box>
+              <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '60px'
+              }}>
+                <h3>Your reviews so far</h3>
+              </Box>
+
+              {myReviews.map((review, i) => <MyReviews review={review} key={i} />)}
+
+              <Box textAlign='center' mb={10} >
+                <Button variant='contained'>Add new review</Button>
+              </Box>
+            </Box>
+          </Container>
+        }
       </Box>
+
+
+
+
       {/* <button onClick={() => getContent('/public')}>Public content</button> */}
-      {content &&
+      {/* {content &&
         <section className="content">
           {content}
         </section>
-      }
+      } */}
+
+
     </Container>
   );
 };
