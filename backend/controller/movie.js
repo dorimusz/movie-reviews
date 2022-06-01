@@ -11,6 +11,7 @@ const apiGetAllReviewedMovies = async (req, res) => {
 }    
    
 const apiSaveMovie = async (req, res) => {
+   req.body.reviews.user_id = req.user_id
    const movie = await MovieService.saveMovie(req.body);
    if (movie) {
       res.sendStatus(201);
