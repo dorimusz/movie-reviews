@@ -3,6 +3,8 @@ import { Routes, Route, useNavigate, useSearchParams } from "react-router-dom";
 import SignIn from './pages/SignIn';
 import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
+import BrowseByMovie from './pages/BrowseByMovie';
+import './style/App.css'
 
 import Message from './components/Message';
 import Typography from '@mui/material/Typography';
@@ -44,9 +46,9 @@ const theme = createTheme({
 });
 
 
-const SignInWithGoogle = ({loggedIn, setLoggedIn, setStatus}) => {
+const SignInWithGoogle = ({ loggedIn, setLoggedIn, setStatus }) => {
   let navigate = useNavigate();
-  let [ searchParams, setSearchParams ] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
 
   useEffect(() => {
@@ -84,41 +86,49 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <ResponsiveAppBar signOut={signOut} loggedIn={loggedIn} />
-      { status && <Message status={status} setStatus={setStatus} /> }
-      <Routes>
-        <Route path="/" element={
-          <Homepage 
-            loggedIn={loggedIn} 
-            setStatus={setStatus}
-          />}
-        />
-        <Route path="callback" element={
-          <SignInWithGoogle 
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-            setStatus={setStatus}
-          />}
-        />
-        <Route
-          path="signIn"
-          element={
-            <SignIn
+      <ThemeProvider theme={theme}>
+        <ResponsiveAppBar signOut={signOut} loggedIn={loggedIn} />
+        {status && <Message status={status} setStatus={setStatus} />}
+        <Routes>
+          <Route path="/" element={
+            <Homepage
+              loggedIn={loggedIn}
               setStatus={setStatus}
+            />}
+          />
+          <Route path="callback" element={
+            <SignInWithGoogle
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}
-            />
-          }
-        />
-        <Route
-          path="dashboard"
-          element={
-            <Dashboard setStatus={setStatus} />
-          }
-        />
-      </Routes>
-    </ThemeProvider>
+              setStatus={setStatus}
+            />}
+          />
+          <Route
+            path="signIn"
+            element={
+              <SignIn
+                setStatus={setStatus}
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <Dashboard setStatus={setStatus} />
+            }
+          />
+          <Route
+            path="browsebymovies"
+            element={
+              <BrowseByMovie
+                loggedIn={loggedIn}
+                setStatus={setStatus} />
+            }
+          />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 }

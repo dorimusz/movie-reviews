@@ -16,7 +16,7 @@ import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 import { Link } from "react-router-dom";
 
 const ResponsiveAppBar = ({ signOut, loggedIn }) => {
- 
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -68,7 +68,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-            <MenuIcon />
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -88,37 +88,37 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              { loggedIn ?
+              {loggedIn ?
                 <>
                   <div>
-                  <Button onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link to="/">
-                        Dashboard
-                      </Link>
-                    </Typography>
-                  </Button>
-                </div>
-                <div>
-                  <Button onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link to="/">
-                        Browse movies
-                      </Link>
-                    </Typography>
-                  </Button>
-                </div>
-                <div>
-                  <Button onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link to="/">
-                        Valami
-                      </Link>
-                    </Typography>
-                  </Button>
-                </div>
+                    <Button onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">
+                        <Link to="/">
+                          Dashboard
+                        </Link>
+                      </Typography>
+                    </Button>
+                  </div>
+                  <div>
+                    <Button onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">
+                        <Link to="/browsebymovies">
+                          Browse movies
+                        </Link>
+                      </Typography>
+                    </Button>
+                  </div>
+                  <div>
+                    <Button onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">
+                        <Link to="/">
+                          Valami
+                        </Link>
+                      </Typography>
+                    </Button>
+                  </div>
                 </>
-              : 
+                :
                 <div>
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
@@ -135,26 +135,26 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
             <MovieFilterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           </Link>
           <Typography
-              variant="h5"
-              noWrap
-              // component="a"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              <Link to="/">
+            variant="h5"
+            noWrap
+            // component="a"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            <Link to="/">
               MOVIE-REVIEWS
-              </Link>
+            </Link>
           </Typography>
 
-          { loggedIn ? 
+          {loggedIn ?
             <Box sx={{ flexGrow: 1, justifyContent: 'flex-start', display: { xs: 'none', md: 'flex' } }}>
               <div>
                 <Button onClick={handleCloseNavMenu}>
@@ -168,7 +168,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               <div>
                 <Button onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to="/">
+                    <Link to="browsebymovies">
                       Browse movies
                     </Link>
                   </Typography>
@@ -184,7 +184,7 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                 </Button>
               </div>
             </Box>
-            : 
+            :
             <Box sx={{ flexGrow: 1, justifyContent: 'end', display: { xs: 'none', md: 'flex' } }}>
               <div>
                 <Button onClick={handleCloseNavMenu}>
@@ -196,38 +196,38 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                 </Button>
               </div>
             </Box>
-            }
+          }
 
-          { loggedIn && 
-          <Box sx={{ flexGrow: 0}}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center" onClick={signOut}>
-                  Sign out
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+          {loggedIn &&
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={signOut}>
+                    Sign out
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
           }
         </Toolbar>
       </Container>

@@ -1,0 +1,48 @@
+/* Browsing/searching movies */
+.popUlarMovies {
+    width: 1100px;
+    margin: auto;
+}
+
+.h2title {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.movieContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.movieCard {
+    width: 350px;
+    border: 1px solid rgb(177, 176, 176);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0px grey;
+}
+
+.movieImage img {
+    margin-top: 10px;
+    width: 300px;
+    height: auto;
+    border-radius: 3px;
+}
+
+.movieInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 10px;
+    gap: 7px;
+}
+
+.buttonHolder {
+    align-self: center;
+}
