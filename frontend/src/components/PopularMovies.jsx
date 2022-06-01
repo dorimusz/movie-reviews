@@ -5,8 +5,6 @@ import http from 'axios'
 const GetPopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState(null);
 
-
-
     const load = async () => {
         const response = await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY}`);
         setPopularMovies(response.data.results)
