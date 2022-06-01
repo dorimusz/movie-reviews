@@ -16,9 +16,7 @@
 }
 
 .movieCard {
-    width: 350px;
     border: 1px solid rgb(177, 176, 176);
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,7 +28,7 @@
 
 .movieImage img {
     margin-top: 10px;
-    width: 300px;
+    width: 180px;
     height: auto;
     border-radius: 3px;
 }
@@ -41,6 +39,7 @@
     align-items: center;
     padding: 10px 10px 10px;
     gap: 7px;
+    font-size: 14px;
 }
 
 .buttonHolder {
