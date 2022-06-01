@@ -86,6 +86,7 @@ function App() {
 
   return (
     <>
+    {/* <Homepage loggedIn={true} /> */}
       <ThemeProvider theme={theme}>
         <ResponsiveAppBar signOut={signOut} loggedIn={loggedIn} />
         {status && <Message status={status} setStatus={setStatus} />}
