@@ -6,8 +6,7 @@ const GetPopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState(null)
 
     const load = async () => {
-        // const response = await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY_TO_API}`);
-        const response = await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=58e6de7306f9b80f76297119119ffc18`);
+        const response = await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY}`);
         setPopularMovies(response.data.results)
         console.log(response.data.results)
     }
