@@ -11,7 +11,6 @@ const saveMovie = async (movieData) => {
 }
 
 const getMovies = async (searchTitle) => {
-  console.log(searchTitle, typeof searchTitle)
   try {
     const movies = Movie.find({ "title": { "$regex": searchTitle, "$options": "gi" }})
     return movies
