@@ -39,9 +39,9 @@ const Homepage = ({ loggedIn, setStatus }) => {
 
   const getReviews = async () => {
     const token = localStorage.getItem("token")
-    const decoded = jwt_decode(token);
-    const userId = decoded._id
-    const response = await http.get(`http://localhost:4000/api/user/${userId}/reviews`, { headers: { 'x-access-token': token } });
+    // const decoded = jwt_decode(token);
+    // const userId = decoded._id
+    const response = await http.get(`http://localhost:4000/api/user/reviews`, { headers: { 'x-access-token': token } });
     console.log(response.data)
     setMyReviews(response.data)
   }

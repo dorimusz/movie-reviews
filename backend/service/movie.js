@@ -38,25 +38,38 @@ const saveReview = async (reviewData) => {
       ]
     });
     await newMovie.save()
-  }
-  try {
-    const review = await Movie.findOneAndUpdate({movie_id: movie_id}, {
-      $push: {
-        reviews: {
-          description: description,
-          score: score,
-          user_id: user_id
+    return newMovie
+  } else {
+    try {
+      const review = await Movie.findOneAndUpdate({movie_id: movie_id}, {
+        $push: {
+          reviews: {
+            description: description,
+            score: score,
+            user_id: user_id
+          },
         },
-      },
-    });
-    return review;
-  } catch (error) {
-    console.log(`Could not save review ${error}`);
+      });
+      return review;
+    } catch (error) {
+      console.log(`Could not save review ${error}`);
+    }
   }
 };
+
+const getMoviesByUser = async (userId) => {
+  // console.log(userId);
+  try {
+    const movies = Movie.find({ "reviews.user_id": userId})
+    return movies
+  } catch (error) {
+    console.log(`Could not get movies ${error}`)
+  }
+}
 
 module.exports = { 
   saveMovie,
   getMovies,
-  saveReview
+  saveReview,
+  getMoviesByUser
 }

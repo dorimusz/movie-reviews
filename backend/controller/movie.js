@@ -2,6 +2,16 @@ const MovieService = require("../service/movie");
 const http = require('axios')
 
 const apiGetAllReviewedMovies = async (req, res) => {
+   const movies = await MovieService.getMoviesByUser(req.user_id)
+   if (movies) {
+      res.json(movies);
+   } else {
+      res.sendStatus(400);
+   }   
+}    
+
+/*
+const apiGetAllReviewedMovies = async (req, res) => {
    const movies = await MovieService.getMovies(req.body.searchTitle)
    if (movies) {
       res.json(movies);
@@ -9,7 +19,7 @@ const apiGetAllReviewedMovies = async (req, res) => {
       res.sendStatus(400);
    }   
 }    
-   
+*/   
 const apiSaveMovie = async (req, res) => {
    req.body.reviews.user_id = req.user_id
    const movie = await MovieService.saveMovie(req.body);
@@ -32,7 +42,7 @@ const apiSaveReview = async (req, res) => {
 }
 
 module.exports = { 
-   apiGetAllReviewedMovies,
    apiSaveMovie,
-   apiSaveReview
+   apiSaveReview,
+   apiGetAllReviewedMovies
 }

@@ -45,6 +45,16 @@ const apiSignInWithGoogle = async (req, res, next) => {
    }
 }
 
+const apiGetAllReviewedMovies = async (req, res) => {
+   const movies = await MovieService.getMovies(req.body.searchTitle)
+   if (movies) {
+      res.json(movies);
+   } else {
+      res.sendStatus(400);
+   }   
+}    
+
 module.exports = { 
    apiSignInWithGoogle,
+   apiGetAllReviewedMovies
 }
