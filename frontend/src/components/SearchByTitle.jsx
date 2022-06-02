@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import http from 'axios'
 import SearchMovie from './SearchMovie'
+import Box from '@mui/material/Box';
+import { TextField } from '@mui/material';
+import Button from '@mui/material/Button'
 
 const SearchByTitle = () => {
     const [searchKeyword, setSearchKeyword] = useState(null);
@@ -27,34 +30,37 @@ const SearchByTitle = () => {
     }
     return (
         <div className='searchByMovie'>
-            <h2 className='h2title'>Try searching by title</h2>
-            <div className='searchMoviesContainer'>
-                <form className="searchbar">
-                    <p> <labelel>Search for title:</labelel> </p>
-                    <input
-                        list="creator-list"
-                        id="searchMovie"
-                        placeholder="Search for title"
-                        value={searchKeyword}
-                        onChange={(e) => setSearchKeyword(e.target.value)}
-                    />
+            
+            <Box className='searchMoviesContainer' textAlign='center'>
+                <Box m={5}>
+                    <form className="searchbar">
+                        <TextField
+                            variant='outlined'
+                            list="creator-list"
+                            id="searchMovie"
+                            placeholder="Search for title"
+                            value={searchKeyword}
+                            onChange={(e) => setSearchKeyword(e.target.value)}
+                        />
 
-                    <button
-                        className="searchButtons"
-                        // disabled={
-                        //     searchKeyword.length >= 3 || searchKeyword.length === 0 ? false : true
-                        // }
-                        onClick={(e) => startSearch(e)}
-                    >
-                        Search
-                    </button>
-                </form>
-
+                        <Button
+                            
+                            variant='outlined'
+                            className="searchButtons"
+                            // disabled={
+                            //     searchKeyword.length >= 3 || searchKeyword.length === 0 ? false : true
+                            // }
+                            onClick={(e) => startSearch(e)}
+                        >
+                            Search
+                        </Button>
+                     </form>
+                </Box>
                 <div className='movieContainer'>
                     {movies ? movies.map((movie, i) => <SearchMovie searchedMovie={movie} key={i} />) : "Movies are loading"}
 
                 </div>
-            </div>
+            </Box>
         </div>
     )
 }

@@ -9,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Rating from '@mui/material/Rating';
 import http from 'axios';
 import jwt_decode from "jwt-decode";
 // import AddMovie from '../common/addMovie'
@@ -16,8 +17,9 @@ const myBackEndURL = "http://localhost:4000/api";
 
 
 const LeaveReview = ({ searchedMovie }) => {
-	const [rating, setRating] = useState(null);
+	// const [rating, setRating] = useState(null);
 	const [reviewText, setReviewText] = useState('')
+	const [value, setValue] = React.useState(2);
 
 	// // const handleSendRewiewBtn = async() => {
 	// const handleSendRewiewBtn = () => {
@@ -62,10 +64,9 @@ const LeaveReview = ({ searchedMovie }) => {
 	return (
 		<Container
 			maxWidth="lg"
-		// sx={{
-		// 	width: '100%',
-		// 	height:'100%'
-		// }}
+		sx={{
+			marginBottom: '30px'
+		}}
 		>
 			<Box>
 				<Typography variant='h5' align='center' m={2}>Leave a review</Typography>
@@ -74,7 +75,17 @@ const LeaveReview = ({ searchedMovie }) => {
 				</Typography>
 			</Box>
 			<FormControl fullWidth>
-				<InputLabel id="demo-simple-select-label">Rating</InputLabel>
+				<Typography component="legend" mt={2}>Rate:</Typography>
+				<Rating
+					name="simple-controlled"
+					value={value}
+					onChange={(event, newValue) => {
+						setValue(newValue);
+					}}
+				/>
+
+
+				{/* <InputLabel id="demo-simple-select-label">Rating</InputLabel>
 				<Select
 					//   labelId="demo-simple-select-label"
 					//   id="demo-simple-select"
@@ -87,7 +98,7 @@ const LeaveReview = ({ searchedMovie }) => {
 					<MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
 					<MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
 					<MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
-				</Select>
+				</Select> */}
 
 				<TextField
 					id="outlined-multiline-static"
@@ -99,7 +110,7 @@ const LeaveReview = ({ searchedMovie }) => {
 					onChange={e => setReviewText(e.target.value)}
 				/>
 				{/* ////send data to database */}
-				<Button variant='contained' onClick={() => addMovie(searchedMovie, rating, reviewText)}>Send in my review</Button>
+				<Button variant='contained' onClick={() => addMovie(searchedMovie, value, reviewText)}>Send in my review</Button>
 			</FormControl>
 
 		</Container>
