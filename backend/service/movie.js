@@ -25,7 +25,7 @@ const saveReview = async (reviewData) => {
   const { description, score, user_id, movie_id, movie_title, movie_description } = reviewData;
   const movie = await Movie.find({movie_id:  movie_id })
   if ( movie.length === 0 ) {
-    Movie.create({
+    const newMovie = new Movie({
       movie_id: movie_id,
       title: movie_title,
       description: movie_description,
@@ -36,7 +36,8 @@ const saveReview = async (reviewData) => {
           user_id: user_id
         },
       ]
-    })
+    });
+    await newMovie.save()
   }
   try {
     const review = await Movie.findOneAndUpdate({movie_id: movie_id}, {
