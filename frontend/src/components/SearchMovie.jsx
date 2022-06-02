@@ -26,7 +26,7 @@ const SearchMovie = ({ searchedMovie }) => {
                 {/* <Button className='addReview' variant='outlined'>Add review</Button> */}
                 <Popup trigger={<Button className='addReview' variant='outlined'> Add review</Button>} modal
                     nested>
-                    <LeaveReview />
+                    <LeaveReview searchedMovie={searchedMovie} />
                 </Popup>
             </div>
         </div>
