@@ -1,5 +1,8 @@
 import React from 'react'
 import Button from '@mui/material/Button';
+import { Popup } from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
+import LeaveReview from './LeaveReview';
 
 const SearchMovie = ({ searchedMovie }) => {
     const imgPath = () => {
@@ -20,7 +23,11 @@ const SearchMovie = ({ searchedMovie }) => {
             </div>
 
             <div className='buttonHolder'>
-                <Button className='addReview'>Add review</Button>
+                {/* <Button className='addReview' variant='outlined'>Add review</Button> */}
+                <Popup trigger={<Button className='addReview' variant='outlined'> Add review</Button>} modal
+                    nested>
+                    <LeaveReview />
+                </Popup>
             </div>
         </div>
     )
