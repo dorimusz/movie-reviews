@@ -17,9 +17,8 @@ const LeaveReview = () => {
 	const [reviewText, setReviewText] = useState('')
 
 	const handleSendRewiewBtn = async () => {
-		await http.post('https://localhost:4000/movies/')
-		//ertekelest elkuldeni db-be!!!!!!!!!!!!!!
-		//reviewt elkuldeni db-be!!!!!!!!!!!!!!
+		await http.post(`http://localhost:4000/api/movies/${movieId}/reviews`)
+
 	}
 console.log(reviewText)
   return (
