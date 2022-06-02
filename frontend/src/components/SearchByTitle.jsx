@@ -8,11 +8,13 @@ const SearchByTitle = () => {
     const [movies, setMovies] = useState([]);
 
     const load = async () => {
-        const response = await http.get(`
-        https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_SECRET_KEY}&query=${searchUrl}`);
+        console.log(searchUrl.length)
+        const response = searchUrl.length > 0 ? await http.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_SECRET_KEY}&query=${searchUrl}`) 
+        : await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY}`)
         // https://api.themoviedb.org/3/search/movie?api_key=api_key=${process.env.REACT_APP_SECRET_KEY}&query=${movieSearch}&page=${pageNumber}`);
         setMovies(response.data.results)
-        console.log(response.data.results)
+        // console.log(response.data.results)
+        console.log(response)
     }
 
     useEffect(() => {

@@ -15,7 +15,7 @@ const BrowseByMovie = ({ loggedIn, setStatus }) => {
         <>
             {/* {loggedIn ? */}
             <SearchByTitle />
-            < PopularMovies />
+            {/* < PopularMovies /> */}
 
             {/* : <h2>You are not logged in.</h2>} */}
 

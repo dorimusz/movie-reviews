@@ -3,10 +3,11 @@ import Button from '@mui/material/Button';
 import { Popup } from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import LeaveReview from './LeaveReview';
+import '../style/searchMovie.css'
 
 const SearchMovie = ({ searchedMovie }) => {
     const imgPath = () => {
-        console.log(searchedMovie)
+        // console.log(searchedMovie)
         const path = searchedMovie.poster_path
         const src = `https://image.tmdb.org/t/p/original${path}`
         return src
