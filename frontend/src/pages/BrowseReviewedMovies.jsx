@@ -16,14 +16,16 @@ const BrowseReviewedMovies = () => {
 
     return (
         <>
-            <TextField value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} >
-            </TextField>
-            <Button onClick={searchMovie}> Search movie review</Button>
-            { movies.length > 0 ? 
-                movies.map((movie, index) => <MyMovie movie={movie} key={index} />)
-            :
-            "nincs"
-            }
+            <div className="searchContainer">
+                <TextField value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} >
+                </TextField>
+                <Button onClick={searchMovie}> Search movie review</Button>
+                {movies.length > 0 ?
+                    movies.map((movie, index) => <MyMovie movie={movie} key={index} />)
+                    :
+                    "Start searching reviewed movies"
+                }
+            </div>
         </>
     )
 }

@@ -45,3 +45,22 @@
 .buttonHolder {
     align-self: center;
 }
+
+.reviewedMovieContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.reviewedMovie {
+    max-width: 500px;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
