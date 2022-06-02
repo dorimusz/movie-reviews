@@ -5,7 +5,7 @@ const MovieCtrl = require("../controller/movie");
 
 router.get('/', MovieCtrl.apiGetAllReviewedMovies); // send all movies
 router.post('/', [auth.verifyToken], MovieCtrl.apiSaveMovie); // create a movie, send back created id
-router.post('/search', MovieCtrl.apiGetAllReviewedMovies); // create a movie, send back created id
+router.post('/search', MovieCtrl.apiSearchReviewedMovies); // create a movie, send back created id
 router.post('/:id/reviews', [auth.verifyToken], MovieCtrl.apiSaveReview); // create a review, send back created reviewid, params id = movie_id
 
 

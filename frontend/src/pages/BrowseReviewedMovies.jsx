@@ -2,6 +2,7 @@ import { TextField } from "@mui/material"
 import React, { useState, useEffect } from 'react'
 import Button from '@mui/material/Button';
 import http from 'axios'
+import MyMovie from "../components/MyMovie";
 
 const BrowseReviewedMovies = () => {
     const [searchTitle, setSearchTitle] = useState("");
@@ -18,6 +19,11 @@ const BrowseReviewedMovies = () => {
             <TextField value={searchTitle} onChange={(e) => setSearchTitle(e.target.value)} >
             </TextField>
             <Button onClick={searchMovie}> Search movie review</Button>
+            { movies.length > 0 ? 
+                movies.map((movie, index) => <MyMovie movie={movie} key={index} />)
+            :
+            "nincs"
+            }
         </>
     )
 }
