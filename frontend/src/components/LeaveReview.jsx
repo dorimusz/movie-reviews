@@ -10,16 +10,35 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Rating from '@mui/material/Rating';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import http from 'axios';
 import jwt_decode from "jwt-decode";
 // import AddMovie from '../common/addMovie'
 const myBackEndURL = "http://localhost:4000/api";
 
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const LeaveReview = ({ searchedMovie }) => {
-	// const [rating, setRating] = useState(null);
-	const [reviewText, setReviewText] = useState('')
+
 	const [value, setValue] = React.useState(2);
+	const [reviewText, setReviewText] = useState('')
+	const [reviewCreated, setReviewCreated] = useState(true)
+	const [open, setOpen] = React.useState(false);
+
+	const handleClick = () => {
+		setOpen(true);
+	};
+
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+		setOpen(false);
+	};
 
 	// // const handleSendRewiewBtn = async() => {
 	// const handleSendRewiewBtn = () => {
@@ -52,10 +71,13 @@ const LeaveReview = ({ searchedMovie }) => {
 					}
 				});
 			console.log(response)
+			setReviewCreated(true)
+			setValue(2)
+			setReviewText('')
 			return (response)
 
 		} catch (error) {
-
+			setReviewCreated(false)
 			if (!error.response) return (error);
 			return error.response;
 		}
@@ -64,9 +86,9 @@ const LeaveReview = ({ searchedMovie }) => {
 	return (
 		<Container
 			maxWidth="lg"
-		sx={{
-			marginBottom: '30px'
-		}}
+			sx={{
+				marginBottom: '30px'
+			}}
 		>
 			<Box>
 				<Typography variant='h5' align='center' m={2}>Leave a review</Typography>
@@ -83,23 +105,6 @@ const LeaveReview = ({ searchedMovie }) => {
 						setValue(newValue);
 					}}
 				/>
-
-
-				{/* <InputLabel id="demo-simple-select-label">Rating</InputLabel>
-				<Select
-					//   labelId="demo-simple-select-label"
-					//   id="demo-simple-select"
-					value={rating}
-					label="rating"
-					onChange={e => setRating(e.target.value)}
-				>
-					<MenuItem value={1}>⭐️</MenuItem>
-					<MenuItem value={2}>⭐️⭐️</MenuItem>
-					<MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
-					<MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
-					<MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
-				</Select> */}
-
 				<TextField
 					id="outlined-multiline-static"
 					//   label="Rewiew"
@@ -110,7 +115,18 @@ const LeaveReview = ({ searchedMovie }) => {
 					onChange={e => setReviewText(e.target.value)}
 				/>
 				{/* ////send data to database */}
-				<Button variant='contained' onClick={() => addMovie(searchedMovie, value, reviewText)}>Send in my review</Button>
+				<Button variant='contained' onClick={() => { addMovie(searchedMovie, value, reviewText); handleClick() }}>Send in my review</Button>
+				
+				<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+
+					{reviewCreated ? 
+					<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+						 Review Added! 🎉
+					</Alert> :
+					<Alert severity="error">Jezzz.. Something went wrong! Try to signin again!</Alert>
+					}
+
+				</Snackbar>
 			</FormControl>
 
 		</Container>
