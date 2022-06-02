@@ -5,35 +5,14 @@ import Homepage from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
 import BrowseByMovie from './pages/BrowseByMovie';
 import './style/App.css'
-
 import Message from './components/Message';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import BrowseReviewedMovies from './pages/BrowseReviewedMovies';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import red from '@mui/material/colors/red';
-import pink from '@mui/material/colors/pink';
 import purple from '@mui/material/colors/purple';
 import deepPurple from '@mui/material/colors/deepPurple';
-import indigo from '@mui/material/colors/indigo';
-import blue from '@mui/material/colors/blue';
-import lightBlue from '@mui/material/colors/lightBlue';
-import cyan from '@mui/material/colors/cyan';
-import teal from '@mui/material/colors/teal';
-import green from '@mui/material/colors/green';
-import lightGreen from '@mui/material/colors/lightGreen';
-import lime from '@mui/material/colors/lime';
-import yellow from '@mui/material/colors/yellow';
-import amber from '@mui/material/colors/amber';
-import orange from '@mui/material/colors/orange';
-import deepOrange from '@mui/material/colors/deepOrange';
-import brown from '@mui/material/colors/brown';
-import grey from '@mui/material/colors/grey';
-import blueGrey from '@mui/material/colors/blueGrey';
+
 import { apiSignInWithGoogle } from './api/auth.api';
 
 const http = require('axios');
@@ -86,7 +65,7 @@ function App() {
 
   return (
     <>
-    {/* <Homepage loggedIn={true} /> */}
+      {/* <Homepage loggedIn={true} /> */}
       <ThemeProvider theme={theme}>
         <ResponsiveAppBar signOut={signOut} loggedIn={loggedIn} />
         {status && <Message status={status} setStatus={setStatus} />}
@@ -124,6 +103,14 @@ function App() {
             path="browsebymovies"
             element={
               <BrowseByMovie
+                loggedIn={loggedIn}
+                setStatus={setStatus} />
+            }
+          />
+          <Route
+            path="reviewedmovies"
+            element={
+              <BrowseReviewedMovies
                 loggedIn={loggedIn}
                 setStatus={setStatus} />
             }

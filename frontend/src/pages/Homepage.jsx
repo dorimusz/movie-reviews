@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button'
 import MyReviews from '../components/MyReviews';
 import jwt_decode from "jwt-decode";
-import MyReviewedMovies from '../components/MyReviewedMovies';
+import { Typography } from '@mui/material';
 // import { margin } from '@mui/system';
 // import { containerClasses } from '@mui/material';
 
@@ -36,7 +36,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
   const [myReviews, setMyReviews] = useState([])
 
 
-  
+
   const getReviews = async () => {
     const token = localStorage.getItem("token")
     const decoded = jwt_decode(token);
@@ -80,41 +80,41 @@ const Homepage = ({ loggedIn, setStatus }) => {
                 width: '100%',
                 bgcolor: 'lightGray'
               }}>
-                <Box
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <h3>You're in good company</h3>
+                <p
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column'
+                    margin: '10px'
+                  }}
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam magnam architecto. Odio, ipsam. Autem odio tenetur delectus fugiat quas beatae recusandae iure atque placeat, voluptatem minima, facilis tempora dolores.</p>
+              </Box>
+              <Box>
+                <Button variant="contained"
+                  sx={{
+                    width: '200px',
+                    padding: '30px',
+                    margin: '20px 20px 40px'
                   }}
                 >
-                  <h3>You're in good company</h3>
-                  <p
-                    sx={{
-                      margin: '10px'
-                    }}
-                  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam magnam architecto. Odio, ipsam. Autem odio tenetur delectus fugiat quas beatae recusandae iure atque placeat, voluptatem minima, facilis tempora dolores.</p>
-                </Box>
-                <Box>
-                  <Button variant="contained"
-                    sx={{
-                      width: '200px',
-                      padding: '30px',
-                      margin: '20px 20px 40px'
-                    }}
-                  >
-                    Browse movies
-                  </Button>
-                </Box>
+                  Browse movies
+                </Button>
               </Box>
+            </Box>
             <Box>
               <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '60px'
-              }}>
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '60px'
+                }}>
                 <h3>Your reviews so far</h3>
               </Box>
-
+              {myReviews.length == 0 && <Typography>You don't have any reviews yet. </Typography>}
               {myReviews.map((review, i) => <MyReviews review={review} />)}
 
               <Box textAlign='center' mb={10} >

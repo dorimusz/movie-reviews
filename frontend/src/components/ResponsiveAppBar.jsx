@@ -111,8 +111,8 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
                   <div>
                     <Button onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">
-                        <Link to="/">
-                          Valami
+                        <Link to="/reviewedmovies">
+                          Browse reviewed movies
                         </Link>
                       </Typography>
                     </Button>
@@ -177,8 +177,8 @@ const ResponsiveAppBar = ({ signOut, loggedIn }) => {
               <div>
                 <Button onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to="/">
-                      Valami
+                    <Link to="/reviewedmovies">
+                      Browse reviewed movies
                     </Link>
                   </Typography>
                 </Button>
