@@ -114,7 +114,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                 }}>
                 <h3>Your reviews so far</h3>
               </Box>
-              {myReviews.length == 0 && <Typography>You don't have any reviews yet. </Typography>}
+              {myReviews.length === 0 && <Typography>You don't have any reviews yet. </Typography>}
               {myReviews.map((review, i) => <MyReviews review={review} />)}
 
               <Box textAlign='center' mb={10} >

@@ -10,9 +10,10 @@ const saveMovie = async (movieData) => {
   }
 }
 
-const getMoviesByUser = async (userId) => {
+const getMovies = async (searchTitle) => {
+  console.log(searchTitle, typeof searchTitle)
   try {
-    const movies = Movie.find({ "reviews.user_id": userId})
+    const movies = Movie.find({ "title": { "$regex": searchTitle, "$options": "gi" }})
     return movies
   } catch (error) {
     console.log(`Could not get movies ${error}`)
@@ -55,6 +56,6 @@ const saveReview = async (reviewData) => {
 
 module.exports = { 
   saveMovie,
-  getMoviesByUser,
+  getMovies,
   saveReview
 }

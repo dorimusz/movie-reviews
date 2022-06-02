@@ -2,7 +2,7 @@ const MovieService = require("../service/movie");
 const http = require('axios')
 
 const apiGetAllReviewedMovies = async (req, res) => {
-   const movies = await MovieService.getMoviesByUser(req.user_id)
+   const movies = await MovieService.getMovies(req.body.searchTitle)
    if (movies) {
       res.json(movies);
    } else {
