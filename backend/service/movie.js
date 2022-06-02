@@ -22,12 +22,27 @@ const getMoviesByUser = async (userId) => {
 
 const saveReview = async (reviewData) => {
   console.log(reviewData)
-  const { title, description, score, user_id, movie_id } = reviewData;
+  const { description, score, user_id, movie_id, movie_title, movie_description } = reviewData;
+  const movie = await Movie.find({movie_id:  movie_id })
+  console.log(movie)
+  if ( movie.length === 0 ) {
+    Movie.create({
+      movie_id: movie_id,
+      title: movie_title,
+      description: movie_description,
+      reviews: [
+        {
+          description: description,
+          score: score,
+          user_id: user_id
+        },
+      ]
+    })
+  }
   try {
     const review = await Movie.findOneAndUpdate({movie_id: movie_id}, {
       $push: {
         reviews: {
-          title: title,
           description: description,
           score: score,
           user_id: user_id

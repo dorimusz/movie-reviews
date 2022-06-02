@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button'
 import MyReviews from '../components/MyReviews';
+import jwt_decode from "jwt-decode";
 // import { margin } from '@mui/system';
 // import { containerClasses } from '@mui/material';
 
@@ -31,11 +32,14 @@ const Homepage = ({ loggedIn, setStatus }) => {
   // };
 
 
-  const [myReviews, setMyReviews] = useState(['fgfgfgf','gfgfg','gfgfg'])
-  const userId = ''                         /////////// need userId!!!!!!! ////////
+  const [myReviews, setMyReviews] = useState(['fgfgfgf', 'gfgfg', 'gfgfg'])
   
   const getReviews = async () => {
-    const response = await http.get(`https://localhost:4000/movies/${userId}/reviews`);
+    const token = localStorage.getItem("token")
+    const decoded = jwt_decode(token);
+    console.log(decoded);
+    const userId = decoded._id
+    const response = await http.get(`http://localhost:4000/api/user/${userId}/reviews`, { headers: { 'x-access-token': token } });
     console.log(response.data);
     setMyReviews(response.data)
   }
