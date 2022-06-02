@@ -59,8 +59,6 @@ const LeaveReview = ({ searchedMovie }) => {
 		}
 	}
 
-
-	console.log(reviewText)
 	return (
 		<Container
 			maxWidth="lg"
