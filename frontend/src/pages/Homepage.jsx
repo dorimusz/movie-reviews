@@ -63,7 +63,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                 padding: '60px'
               }}
             >
-              <h2>Welcome USERNAME</h2>
+              <h2>Welcome</h2>
             </Box>
             {/* <BrowseByMovie /> */}
           </>
