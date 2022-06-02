@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import MyReviews from '../components/MyReviews';
 import jwt_decode from "jwt-decode";
 import { Typography } from '@mui/material';
+import {Link } from "react-router-dom";
 // import { margin } from '@mui/system';
 // import { containerClasses } from '@mui/material';
 
@@ -39,7 +40,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
 
   const getReviews = async () => {
     const token = localStorage.getItem("token")
-    // const decoded = jwt_decode(token);
+      // const decoded = jwt_decode(token);
     // const userId = decoded._id
     const response = await http.get(`http://localhost:4000/api/user/reviews`, { headers: { 'x-access-token': token } });
     console.log(response.data)
@@ -94,15 +95,18 @@ const Homepage = ({ loggedIn, setStatus }) => {
                 >Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam magnam architecto. Odio, ipsam. Autem odio tenetur delectus fugiat quas beatae recusandae iure atque placeat, voluptatem minima, facilis tempora dolores.</p>
               </Box>
               <Box>
-                <Button variant="contained"
-                  sx={{
-                    width: '200px',
-                    padding: '30px',
-                    margin: '20px 20px 40px'
-                  }}
-                >
-                  Browse movies
-                </Button>
+                <Link to='/browsebymovies'>
+                  <Button variant="contained"
+                    sx={{
+                      width: '200px',
+                      padding: '30px',
+                      margin: '20px 20px 40px'
+                    }}
+                    
+                  >
+                    Browse movies
+                  </Button>
+                </Link>
               </Box>
             </Box>
             <Box>
@@ -118,7 +122,10 @@ const Homepage = ({ loggedIn, setStatus }) => {
               {myReviews.map((review, i) => <MyReviews review={review} />)}
 
               <Box textAlign='center' mb={10} >
-                <Button variant='contained'>Add new review</Button>
+                <Link to='/browsebymovies'>
+                  <Button variant='contained'>Add new review</Button>
+                </Link>
+
               </Box>
             </Box>
           </Container>
