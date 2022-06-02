@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button'
 import MyReviews from '../components/MyReviews';
 import jwt_decode from "jwt-decode";
+import MyReviewedMovies from '../components/MyReviewedMovies';
 // import { margin } from '@mui/system';
 // import { containerClasses } from '@mui/material';
 
@@ -32,15 +33,16 @@ const Homepage = ({ loggedIn, setStatus }) => {
   // };
 
 
-  const [myReviews, setMyReviews] = useState(['fgfgfgf', 'gfgfg', 'gfgfg'])
+  const [myReviews, setMyReviews] = useState([])
+
+
   
   const getReviews = async () => {
     const token = localStorage.getItem("token")
     const decoded = jwt_decode(token);
-    console.log(decoded);
     const userId = decoded._id
     const response = await http.get(`http://localhost:4000/api/user/${userId}/reviews`, { headers: { 'x-access-token': token } });
-    console.log(response.data);
+    console.log(response.data)
     setMyReviews(response.data)
   }
 
@@ -113,7 +115,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                 <h3>Your reviews so far</h3>
               </Box>
 
-              {myReviews.map((review, i) => <MyReviews review={review} key={i} />)}
+              {myReviews.map((review, i) => <MyReviews review={review} />)}
 
               <Box textAlign='center' mb={10} >
                 <Button variant='contained'>Add new review</Button>

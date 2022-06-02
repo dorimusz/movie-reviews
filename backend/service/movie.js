@@ -11,7 +11,6 @@ const saveMovie = async (movieData) => {
 }
 
 const getMoviesByUser = async (userId) => {
-  console.log(userId);
   try {
     const movies = Movie.find({ "reviews.user_id": userId})
     return movies
@@ -24,7 +23,6 @@ const saveReview = async (reviewData) => {
   console.log(reviewData)
   const { description, score, user_id, movie_id, movie_title, movie_description } = reviewData;
   const movie = await Movie.find({movie_id:  movie_id })
-  console.log(movie)
   if ( movie.length === 0 ) {
     Movie.create({
       movie_id: movie_id,

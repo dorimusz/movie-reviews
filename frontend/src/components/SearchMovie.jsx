@@ -6,6 +6,7 @@ import LeaveReview from './LeaveReview';
 
 const SearchMovie = ({ searchedMovie }) => {
     const imgPath = () => {
+        console.log(searchedMovie)
         const path = searchedMovie.poster_path
         const src = `https://image.tmdb.org/t/p/original${path}`
         return src

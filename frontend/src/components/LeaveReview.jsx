@@ -9,7 +9,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import http from 'axios'
+import http from 'axios';
+import jwt_decode from "jwt-decode";
 // import AddMovie from '../common/addMovie'
 const myBackEndURL = "http://localhost:4000/api";
 
@@ -29,26 +30,23 @@ const LeaveReview = ({ searchedMovie }) => {
 	// 	*/
 	// }
 
+
 	const addMovie = async (searchedMovie, rating, reviewText) => {
-		console.log(searchedMovie)
+		console.log('addMovie : ', searchedMovie)
 		try {
 			//ide a filmnek a milyen id-ja kell tho?
-			const response = await http.post(`${myBackEndURL}/movies/${searchedMovie.id}/reviews`, {
-				movie_title: searchedMovie.original_title,
-				movie_id: searchedMovie.id,
-				year: searchedMovie.release_date,
-				description: searchedMovie.overview,
-				reviews: [{
-					title: searchedMovie.original_title,
-					description: reviewText,
-					// user_id: user_id,
-					score: rating
-				}],
+			const decoded = jwt_decode(localStorage.getItem('token'));
 
+			const response = await http.post(`${myBackEndURL}/movies/${searchedMovie.id}/reviews`, {
+				description: reviewText,
+				score: rating,
+				user_id: decoded._id,
+				movie_title: searchedMovie.original_title,
+				movie_description: searchedMovie.overview,
 			},
 				{
 					headers: {
-						'x-access-token': localStorage.getItem("sessionId"),
+						'x-access-token': localStorage.getItem("token"),
 					}
 				});
 			console.log(response)
