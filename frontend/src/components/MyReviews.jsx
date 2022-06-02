@@ -13,28 +13,32 @@ const MyReviews = ({ review, movieTitle }) => {
 		}}
 	>
 		  <Typography align='center' variant='h5' gutterBottom='true'>
-			  {review.description}
-		  </Typography>
-		  <Typography align='center' variant='h5' gutterBottom='true'>
-			  {review.title}
-		  </Typography>
+			{review.title}
+		</Typography>
+
+		<Typography align='justify'>
+			{review.description}
+		</Typography >
+		  
 
 		  {
 			  review.reviews.map(rev => <>
-				  <Typography align='justify'>
+				  {/* <Typography align='justify'>
 					  {review.description}
-				  </Typography >
+				  </Typography > */}
 				  <Box
 					  sx={{
 						  display: 'flex',
 						  justifyContent: 'space-between',
+						  flexDirection: 'column',
 						  margin: '20px 0',
-						  width: '30%'
+						  width: '100%'
 					  }}
 				  >
-					  <p>Rating:{rev.score}</p>
-					  <p>Review:{rev.description}</p>
-					  <p>Date of review:{rev.timestamp}</p>
+					  <p><b>Rating:</b> {rev.score}</p>
+					  <p><b>Date of review:</b> {rev.timestamp}</p>
+					  <p><b>Review:</b> {rev.description}</p>
+					  
 				  </Box>
 			  </>)
 		  }
