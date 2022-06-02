@@ -14,7 +14,7 @@ import http from 'axios'
 const myBackEndURL = "http://localhost:4000/api";
 
 
-const LeaveReview = (searchedMovie) => {
+const LeaveReview = ({ searchedMovie }) => {
 	const [rating, setRating] = useState(null);
 	const [reviewText, setReviewText] = useState('')
 
@@ -30,10 +30,11 @@ const LeaveReview = (searchedMovie) => {
 	// }
 
 	const addMovie = async (searchedMovie, rating, reviewText) => {
+		console.log(searchedMovie)
 		try {
 			//ide a filmnek a milyen id-ja kell tho?
 			const response = await http.post(`${myBackEndURL}/movies/${searchedMovie.id}/reviews`, {
-				title: searchedMovie.original_title,
+				movie_title: searchedMovie.original_title,
 				movie_id: searchedMovie.id,
 				year: searchedMovie.release_date,
 				description: searchedMovie.overview,
@@ -47,12 +48,9 @@ const LeaveReview = (searchedMovie) => {
 			},
 				{
 					headers: {
-						authorization: localStorage.getItem("sessionId"),
+						'x-access-token': localStorage.getItem("sessionId"),
 					}
 				});
-
-			//ez?
-			localStorage.setItem("token", response.data.token);
 			console.log(response)
 			return (response)
 
@@ -105,7 +103,7 @@ const LeaveReview = (searchedMovie) => {
 					onChange={e => setReviewText(e.target.value)}
 				/>
 				{/* ////send data to database */}
-				<Button variant='contained' onClick={addMovie}>Send in my review</Button>
+				<Button variant='contained' onClick={() => addMovie(searchedMovie, rating, reviewText)}>Send in my review</Button>
 			</FormControl>
 
 		</Container>
