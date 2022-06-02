@@ -72,7 +72,7 @@ const SignInWithGoogle = ({ loggedIn, setLoggedIn, setStatus }) => {
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'));
   const [status, setStatus] = useState(false);
 
   let navigate = useNavigate();
