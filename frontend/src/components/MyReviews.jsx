@@ -33,7 +33,7 @@ const MyReviews = ({ review, movieTitle }) => {
 					  }}
 				  >
 					  <p>Rating:{rev.score}</p>
-					  <p>Date of review:{rev.description}</p>
+					  <p>Review:{rev.description}</p>
 					  <p>Date of review:{rev.timestamp}</p>
 				  </Box>
 			  </>)
