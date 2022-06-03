@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 import MyReviews from '../components/MyReviews';
 import jwt_decode from "jwt-decode";
 import { Typography } from '@mui/material';
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { margin } from '@mui/system';
 // import { containerClasses } from '@mui/material';
 
@@ -38,7 +38,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
 
   const getReviews = async () => {
     const token = localStorage.getItem("token")
-      // const decoded = jwt_decode(token);
+    // const decoded = jwt_decode(token);
     // const userId = decoded._id
     const response = await http.get(`http://localhost:4000/api/user/reviews`, { headers: { 'x-access-token': token } });
     console.log(response.data)
@@ -59,19 +59,19 @@ const Homepage = ({ loggedIn, setStatus }) => {
             padding: '60px'
           }}
         >
-        {loggedIn ?
-          <>
-          <h2>Welcome</h2>
-            {/* <BrowseByMovie /> */}
-          </>
-          :
-          <>
-            <h2>You are not logged in.</h2>
-          </>
-        }
+          {loggedIn ?
+            <>
+              <h2>Welcome</h2>
+              {/* <BrowseByMovie /> */}
+            </>
+            :
+            <>
+              <h2 className='notLogged'>You are not logged in. Please log in with your Google account before continue.</h2>
+            </>
+          }
         </Box>
-        { loggedIn &&
-          <Container>
+        {loggedIn &&
+          <Container className='compCont'>
             <Box
               sx={{
                 display: 'flex',
@@ -91,7 +91,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                   sx={{
                     margin: '10px'
                   }}
-                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quisquam magnam architecto. Odio, ipsam. Autem odio tenetur delectus fugiat quas beatae recusandae iure atque placeat, voluptatem minima, facilis tempora dolores.</p>
+                >Fancy the newest movies and always trying to be up to date with the most thrilling ones? Find your favorite titles and check what others wrote about it, moreover, leave your own review! </p>
               </Box>
               <Box>
                 <Link to='/browsebymovies'>
@@ -101,7 +101,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                       padding: '30px',
                       margin: '20px 20px 20px'
                     }}
-                    
+
                   >
                     Browse movies
                   </Button>
