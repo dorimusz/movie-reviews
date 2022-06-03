@@ -12,8 +12,8 @@ const SearchByTitle = () => {
 
     const load = async () => {
         console.log(searchUrl.length)
-        const response = searchUrl.length > 0 ? await http.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_SECRET_KEY}&query=${searchUrl}`) 
-        : await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY}`)
+        const response = searchUrl.length > 0 ? await http.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_SECRET_KEY}&query=${searchUrl}`)
+            : await http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_SECRET_KEY}`)
         // https://api.themoviedb.org/3/search/movie?api_key=api_key=${process.env.REACT_APP_SECRET_KEY}&query=${movieSearch}&page=${pageNumber}`);
         setMovies(response.data.results)
         // console.log(response.data.results)
@@ -30,9 +30,10 @@ const SearchByTitle = () => {
     }
     return (
         <div className='searchByMovie'>
-            
+
             <Box className='searchMoviesContainer' textAlign='center'>
                 <Box m={5}>
+                    <p className="textP">Start typing a keyword a movie title into the field. In case you don't have any idea, just pick one from the most popular ones:</p>
                     <form className="searchbar">
                         <TextField
                             variant='outlined'
@@ -44,8 +45,8 @@ const SearchByTitle = () => {
                         />
 
                         <Button
-                            
-                            variant='outlined'
+
+                            // variant='outlined'
                             className="searchButtons"
                             // disabled={
                             //     searchKeyword.length >= 3 || searchKeyword.length === 0 ? false : true
@@ -54,7 +55,7 @@ const SearchByTitle = () => {
                         >
                             Search
                         </Button>
-                     </form>
+                    </form>
                 </Box>
                 <div className='movieContainer'>
                     {movies ? movies.map((movie, i) => <SearchMovie searchedMovie={movie} key={i} />) : "Movies are loading"}

@@ -97,7 +97,7 @@ const LeaveReview = ({ searchedMovie }) => {
 				</Typography>
 			</Box>
 			<FormControl fullWidth>
-				<Typography component="legend" mt={2}>Rate:</Typography>
+				<Typography component="legend" mt={2}>Rating:</Typography>
 				<Rating
 					name="simple-controlled"
 					value={value}
@@ -115,15 +115,15 @@ const LeaveReview = ({ searchedMovie }) => {
 					onChange={e => setReviewText(e.target.value)}
 				/>
 				{/* ////send data to database */}
-				<Button variant='contained' onClick={() => { addMovie(searchedMovie, value, reviewText); handleClick() }}>Send in my review</Button>
-				
+				<Button className='revBut' variant='contained' onClick={() => { addMovie(searchedMovie, value, reviewText); handleClick() }}>Send in my review</Button>
+
 				<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
 
-					{reviewCreated ? 
-					<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-						 Review Added! 🎉
-					</Alert> :
-					<Alert severity="error">Jezzz.. Something went wrong! Try to signin again!</Alert>
+					{reviewCreated ?
+						<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+							Review Added! 🎉
+						</Alert> :
+						<Alert severity="error">Jezzz.. Something went wrong! Try to signin again!</Alert>
 					}
 
 				</Snackbar>
