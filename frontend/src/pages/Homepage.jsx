@@ -36,8 +36,6 @@ const Homepage = ({ loggedIn, setStatus }) => {
 
   const [myReviews, setMyReviews] = useState([])
 
-
-
   const getReviews = async () => {
     const token = localStorage.getItem("token")
       // const decoded = jwt_decode(token);
@@ -48,23 +46,22 @@ const Homepage = ({ loggedIn, setStatus }) => {
   }
 
   useEffect(() => {
-    getReviews()
+    if (loggedIn) getReviews()
   }, [])
 
   return (
     <Container component="main" maxWidth="lg">
       <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '60px'
+          }}
+        >
         {loggedIn ?
           <>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '60px'
-              }}
-            >
-              <h2>Welcome</h2>
-            </Box>
+          <h2>Welcome</h2>
             {/* <BrowseByMovie /> */}
           </>
           :
@@ -72,14 +69,16 @@ const Homepage = ({ loggedIn, setStatus }) => {
             <h2>You are not logged in.</h2>
           </>
         }
-        {loggedIn &&
+        </Box>
+        { loggedIn &&
           <Container>
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'row',
                 width: '100%',
-                bgcolor: 'lightGray'
+                bgcolor: 'lightGray',
+                padding: '20px'
               }}>
               <Box
                 sx={{
@@ -100,7 +99,7 @@ const Homepage = ({ loggedIn, setStatus }) => {
                     sx={{
                       width: '200px',
                       padding: '30px',
-                      margin: '20px 20px 40px'
+                      margin: '20px 20px 20px'
                     }}
                     
                   >
